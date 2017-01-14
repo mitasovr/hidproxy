@@ -1,7 +1,13 @@
-var HID = require('node-hid');
+var fs = require('fs');
+var readable = fs.createReadStream('/sys/kernel/debug/hid/0005:04E8:2080.0007/events');
+readable.on('data', (chunk) => {
+    console.log(`Received ${chunk.length} bytes of data.`);
+});
 
-var devices = HID.devices();
-console.log(devices);
+// var HID = require('node-hid');
+
+// var devices = HID.devices();
+// console.log(devices);
 
 
 // var mouse = require('./mouse.js');
